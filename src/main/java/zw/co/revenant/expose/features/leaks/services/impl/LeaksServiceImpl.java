@@ -8,12 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import zw.co.revenant.expose.features.auth.models.entities.Snitch;
 import zw.co.revenant.expose.features.auth.repositories.SnitchRepository;
+import zw.co.revenant.expose.features.leaks.models.dto.LeakDto;
 import zw.co.revenant.expose.features.leaks.models.entities.Leak;
 import zw.co.revenant.expose.features.leaks.models.requests.PostLeakRequest;
 import zw.co.revenant.expose.features.leaks.repositories.LeakRepository;
 import zw.co.revenant.expose.features.leaks.services.interfaces.LeaksService;
+import zw.co.revenant.expose.utils.DtoMapper;
 import zw.co.revenant.expose.utils.models.ExposeResponse;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,6 +28,7 @@ public class LeaksServiceImpl implements LeaksService {
 
     private final LeakRepository leakRepository;
     private final SnitchRepository snitchRepository;
+    private final DtoMapper dtoMapper;
 
     @Override
     public ResponseEntity<ExposeResponse> postLeak(PostLeakRequest request) {
@@ -47,6 +51,19 @@ public class LeaksServiceImpl implements LeaksService {
 
         } catch (Exception e) {
             LOGGER.error("Posting leak error: {}", e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseEntity<ExposeResponse> getLeaks() {
+        try {
+            List<LeakDto> leaks = leakRepository.findAll().stream().map(dtoMapper::mapToLeakDto).toList();
+
+            return new ResponseEntity<>(new ExposeResponse(leaks), HttpStatus.OK);
+
+        } catch (Exception e) {
+            LOGGER.error("Get leaks error: {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
