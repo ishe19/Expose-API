@@ -6,4 +6,7 @@ import zw.co.revenant.expose.utils.models.ExposeResponse;
 
 public interface LeaksService {
     ResponseEntity<ExposeResponse> postLeak(PostLeakRequest request);
+
+    ResponseEntity<ExposeResponse> getLeaks();
+
 }
