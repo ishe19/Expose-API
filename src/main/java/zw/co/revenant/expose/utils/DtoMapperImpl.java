@@ -1,5 +1,6 @@
 package zw.co.revenant.expose.utils;
 
+import org.springframework.stereotype.Component;
 import zw.co.revenant.expose.features.articles.models.dto.ArticleDto;
 import zw.co.revenant.expose.features.articles.models.entities.Article;
 import zw.co.revenant.expose.features.leaks.models.dto.LeakDto;
@@ -7,6 +8,8 @@ import zw.co.revenant.expose.features.leaks.models.entities.Leak;
 import zw.co.revenant.expose.features.learning.models.dto.LearningArticleDto;
 import zw.co.revenant.expose.features.learning.models.entities.LearningArticle;
 
+
+@Component
 public class DtoMapperImpl implements DtoMapper {
     @Override
     public ArticleDto mapToArticleDto(Article article) {
