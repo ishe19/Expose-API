@@ -14,6 +14,7 @@ import zw.co.revenant.expose.features.articles.models.dto.ArticleDto;
 import zw.co.revenant.expose.features.articles.models.entities.Article;
 import zw.co.revenant.expose.features.articles.repositories.ArticleMediaRepository;
 import zw.co.revenant.expose.features.articles.repositories.ArticleRepository;
+import zw.co.revenant.expose.features.auth.repositories.JournalistRepository;
 import zw.co.revenant.expose.utils.DtoMapper;
 import zw.co.revenant.expose.utils.models.ExposeResponse;
 
@@ -36,6 +37,9 @@ class ArticleServiceImplTest {
     @Mock
     private DtoMapper dtoMapper;
 
+    @Mock
+    private JournalistRepository journalistRepository;
+
     @InjectMocks
     private ArticleServiceImpl authService;
 
@@ -47,7 +51,7 @@ class ArticleServiceImplTest {
 
 
     ArticleServiceImpl getConstructor() {
-        return new ArticleServiceImpl(articleRepository, articleMediaRepository, dtoMapper);
+        return new ArticleServiceImpl(articleRepository, articleMediaRepository, journalistRepository, dtoMapper);
     }
 
     // Fetch all articles successfully
