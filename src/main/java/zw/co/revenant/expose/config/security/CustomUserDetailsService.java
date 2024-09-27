@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return User.builder()
                 .username("expos3")
-                .password(passwordEncoder.encode("Expos3_revenant987")) // Ensure the password is encoded
+                .password(passwordEncoder.encode("Expos3_revenant987"))
                 .roles("USER")
                 .build();
     }
