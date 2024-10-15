@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class SecurityConfig {
 
     private static final String[] WHITELIST_URLS = {
             "/error",
+            "/swagger/**",
             "/swagger-ui/**",
             "/docs/**",
             "/v1/auth"
@@ -54,6 +57,17 @@ public class SecurityConfig {
         return source;
     }
 
+    @Bean
+    public WebMvcConfigurer corsConfiguration() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE")
+                        .allowedOrigins("*");
+            }
+        };
+    }
 
 }
 
