@@ -9,13 +9,15 @@ import zw.co.revenant.expose.utils.enums.UserType;
 public class LoginResponse {
     private String message;
     private UserType user;
+    private String userCode;
 
     public LoginResponse(String message) {
         this.message = message;
     }
 
-    public LoginResponse(String message, UserType user) {
+    public LoginResponse(String message, UserType user, String userCode) {
         this.message = message;
         this.user = user;
+        this.userCode = userCode;
     }
 }
