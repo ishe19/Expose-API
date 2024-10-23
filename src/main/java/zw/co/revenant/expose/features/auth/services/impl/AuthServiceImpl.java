@@ -84,13 +84,13 @@ public class AuthServiceImpl implements AuthService {
             Optional<Snitch> snitch = snitchRepository.findByUsername(request.getUsername());
             if (snitch.isPresent()) {
                 if (passwordEncoder.matches(request.getPassword(), snitch.get().getPassword())) {
-                    return new ResponseEntity<>(new LoginResponse("Login Successful", UserType.SNITCH), HttpStatus.OK);
+                    return new ResponseEntity<>(new LoginResponse("Login Successful", UserType.SNITCH, snitch.get().getSnitchCode()), HttpStatus.OK);
                 } else return new ResponseEntity<>(new LoginResponse("Incorrect password"), HttpStatus.UNAUTHORIZED);
             } else {
                 Optional<Journalist> journalist = journalistRepository.findByUsername(request.getUsername());
                 if (journalist.isPresent()) {
                     if (passwordEncoder.matches(request.getPassword(), journalist.get().getPassword())) {
-                        return new ResponseEntity<>(new LoginResponse("Login Successful", UserType.JOURNALIST), HttpStatus.OK);
+                        return new ResponseEntity<>(new LoginResponse("Login Successful", UserType.JOURNALIST, journalist.get().getJournalistCode()), HttpStatus.OK);
                     } else
                         return new ResponseEntity<>(new LoginResponse("Incorrect password"), HttpStatus.UNAUTHORIZED);
                 }
