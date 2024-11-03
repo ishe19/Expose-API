@@ -1,9 +1,9 @@
 package zw.co.revenant.expose.features.auth.services.interfaces;
 
 import org.springframework.http.ResponseEntity;
-import zw.co.revenant.expose.features.sample.models.requests.LoginRequest;
-import zw.co.revenant.expose.features.sample.models.requests.RegisterJournalistRequest;
-import zw.co.revenant.expose.features.sample.models.requests.RegisterSnitchRequest;
+import zw.co.revenant.expose.features.auth.models.requests.LoginRequest;
+import zw.co.revenant.expose.features.auth.models.requests.RegisterJournalistRequest;
+import zw.co.revenant.expose.features.auth.models.requests.RegisterSnitchRequest;
 import zw.co.revenant.expose.features.auth.models.responses.LoginResponse;
 
 public interface AuthService {
