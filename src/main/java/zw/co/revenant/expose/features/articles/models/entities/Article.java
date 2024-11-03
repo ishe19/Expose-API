@@ -3,6 +3,8 @@ package zw.co.revenant.expose.features.articles.models.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import zw.co.revenant.expose.features.auth.models.entities.Journalist;
 
@@ -30,8 +32,11 @@ public class Article {
     @JoinColumn(referencedColumnName = "id", columnDefinition = "journalist_id")
     private Journalist journalist;
     private boolean visible;
-
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
     private Date createdOn;
+    @LastModifiedDate
+    @Column(insertable = false)
     private Date updatedOn;
 
 }
