@@ -8,16 +8,16 @@ import zw.co.revenant.expose.utils.enums.UserType;
 @NoArgsConstructor
 public class LoginResponse {
     private String message;
-    private UserType user;
+    private UserType userType;
     private String userCode;
 
     public LoginResponse(String message) {
         this.message = message;
     }
 
-    public LoginResponse(String message, UserType user, String userCode) {
+    public LoginResponse(String message, UserType userType, String userCode) {
         this.message = message;
-        this.user = user;
+        this.userType = userType;
         this.userCode = userCode;
     }
 }
