@@ -32,11 +32,8 @@ public class Article {
     @JoinColumn(referencedColumnName = "id", columnDefinition = "journalist_id")
     private Journalist journalist;
     private boolean visible;
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
+
     private Date createdOn;
-    @LastModifiedDate
-    @Column(insertable = false)
     private Date updatedOn;
 
 }

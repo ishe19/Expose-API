@@ -18,6 +18,7 @@ import zw.co.revenant.expose.features.auth.repositories.JournalistRepository;
 import zw.co.revenant.expose.utils.DtoMapper;
 import zw.co.revenant.expose.utils.models.ExposeResponse;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -66,6 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
                         .subtitle(request.getArticleSubtitle())
                         .journalist(journalist.get())
                         .visible(false)
+                        .createdOn(new Date())
                         .build();
 
                 articleRepository.save(article);
